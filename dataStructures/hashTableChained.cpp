@@ -6,8 +6,8 @@ using namespace std;
 
 class HashTable {
     private:
-        static const int hashGroups = 10;
-        list<pair<int, string>> table[hashGroups];
+        static const int m = 10;
+        list<pair<int, string>> table[m];
     public:
         bool isEmpty() const;
         int hashFunction(int key);
@@ -19,7 +19,7 @@ class HashTable {
 
 bool HashTable::isEmpty() const {
     int sum{};
-    for (int i{}; i<hashGroups; i++) {
+    for (int i{}; i<m; i++) {
         sum += table[i].size();
     }
     if (!sum) {
@@ -29,7 +29,7 @@ bool HashTable::isEmpty() const {
 }
 
 int HashTable::hashFunction(int key) {
-    return key%hashGroups;
+    return key%m;
 }
 
 void HashTable::hashInsertion(int key, string value) {
@@ -94,7 +94,7 @@ string HashTable::searchItem(int key) {
 }
 
 void HashTable::printTable() {
-    for (int i; i<hashGroups; i++) {
+    for (int i; i<m; i++) {
         if (table[i].size() == 0) {
             continue;
         }
