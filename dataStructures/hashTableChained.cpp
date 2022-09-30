@@ -13,6 +13,7 @@ class HashTable {
         int hashFunction(int key);
         void hashInsertion(int key, string value);
         void removeItem(int key);
+        string searchItem(int key);
         void printTable();
 };
 
@@ -73,6 +74,25 @@ void HashTable::removeItem(int key) {
     return;
 }
 
+string HashTable::searchItem(int key) {
+    int hashValue = hashFunction(key);
+    auto& cell = table[hashValue];
+    auto bItr = begin(cell);
+    bool keyExists = false;
+    for (;bItr!=end(cell);bItr++) {
+        if (bItr->first == key) {
+            keyExists = true;
+            return bItr->second;
+        }
+    }
+
+    if (!keyExists) {
+        cout << "item not found" << "\n";
+    }
+
+    return NULL;
+}
+
 void HashTable::printTable() {
     for (int i; i<hashGroups; i++) {
         if (table[i].size() == 0) {
@@ -102,6 +122,7 @@ int main() {
     HT.hashInsertion(924, "Michal");
     HT.hashInsertion(522, "Stasiu");
     HT.hashInsertion(792, "Kuba");
+    HT.hashInsertion(106, "Natalia");
 
     HT.printTable();
     
@@ -110,10 +131,14 @@ int main() {
 
     HT.printTable();
 
+    int key = 106;
+
+    cout << "Found " << HT.searchItem(key) << " with key " << key << "\n";
+
     if (HT.isEmpty()) {
-        cout << "Hash Table is empty";
+        cout << "Hash Table is empty" << "\n";
     } else {
-        cout << "Hash Table is not empty";
+        cout << "Hash Table is not empty" << "\n";
     }
 
     return 0;
