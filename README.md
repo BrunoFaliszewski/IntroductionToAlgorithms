@@ -1,0 +1,1 @@
+Implementacion in C++ of algorithms and data structures from book "Introduction to algorithms" by Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein.
